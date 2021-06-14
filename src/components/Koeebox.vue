@@ -89,10 +89,9 @@ $text-color: #979BA7;
 }
 @media(min-width: 2000px) {
   .koeebox-block {
+    // min-height: 100%;
     display: grid;
     .koeebox-qr {
-      margin-top: auto;
-      padding-bottom: 15%;
       .koeebox {
         .logo, .qr-code {
           width: 50%;
@@ -118,6 +117,40 @@ $text-color: #979BA7;
     }
   }
 }
+@media(min-width: 2601px) and (max-width: 2800px){
+  .koeebox-block {
+    .koeebox-qr {
+      padding-bottom: 14%;
+    }
+  }
+}
+@media(min-width: 2401px) and (max-width: 2600px){
+  .koeebox-block {
+    .koeebox-qr {
+      padding-bottom: 15%;
+    }
+  }
+}
+@media(min-width: 2001px) and (max-width: 2400px){
+  .koeebox-block {
+    .koeebox-qr {
+      padding-bottom: 17%;
+    }
+  }
+}
+@media (min-width: 1701px) and (max-width: 2000px) {
+  .koeebox-block {
+    display: grid;
+    .koeebox-qr {
+      padding-bottom: 5%;
+    }
+  }
+}
+@media (min-width: 1451px) and (max-width: 1700px) {
+  .koeebox-block .koeebox-qr {
+    padding-bottom: 7%;
+  }
+}
 @media (min-width: 1263px) and (max-width: 1400px) {
   .shadow-block {
     margin-top: 15px;
@@ -125,6 +158,7 @@ $text-color: #979BA7;
   }
   .koeebox-block {
     .koeebox-qr {
+      padding-bottom: 0;
       .koeebox {
         .qr-code {
           padding-left: 5px;
@@ -175,6 +209,19 @@ $text-color: #979BA7;
       }
     } 
   }
-
+}
+@media(min-width: 1200px) and (max-width: 1263px) {
+  .koeebox-block {
+    .koeebox-qr {
+      margin-bottom: 21%;
+    }
+  }
+}
+@media(min-width: 1100px) and (max-width: 1200px) {
+  .koeebox-block {
+    .koeebox-qr {
+      margin-bottom: 8%;
+    }
+  }
 }
 </style>

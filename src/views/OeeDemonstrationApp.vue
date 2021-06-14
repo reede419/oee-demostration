@@ -625,10 +625,10 @@ background-color: #707381;
     }
 
   }
-  .shadow-block {
-    box-shadow: -6px -6px 10px #212530, 6px 6px 10px #14171d;
-    // padding: 50px 56px;
-   }
+  // .shadow-block {
+  //   box-shadow: -6px -6px 10px #212530, 6px 6px 10px #14171d;
+  //   padding: 50px 56px;
+  //  }
 }
 @media (min-width: 1263px) and (max-width: 1500px) {
   .shadow-block {

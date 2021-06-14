@@ -433,6 +433,9 @@ $text-color: #979BA7;
   }
 }
 @media (min-width: 2001px) {
+  // .block-range-input {
+  //   min-height: 100%;
+  // }
   .range-input-block {
     padding-top: 3%;
     .horizontal-inputs .v-slider--horizontal .v-slider__track-container {
@@ -495,6 +498,7 @@ $text-color: #979BA7;
 }
 @media (min-width: 1701px) and (max-width: 1900px) {
   .range-input-block {
+    padding-bottom: 3%;
     .single-chart, .single-chart2 {
       margin-top: 23%;
       width: 85%;
@@ -517,7 +521,10 @@ $text-color: #979BA7;
   }
 }
 @media (min-width: 1451px) and (max-width: 1700px) {
+
   .range-input-block {
+    padding-bottom: 5%;
+  
     .single-chart, .single-chart2 {
       margin-top: 40%;
       width: 85%;
@@ -568,6 +575,7 @@ $text-color: #979BA7;
 }
 @media(max-width: 1263px) {
   .range-input-block {
+    padding-bottom: 16%;
     .single-chart, .single-chart2 {
       width: 70%;
     }
