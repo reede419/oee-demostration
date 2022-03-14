@@ -184,17 +184,15 @@ $orange: #FF6D0B;
 $white: #FFFFFF;
 $text-color: #979BA7;
 
-// .block-range-input {
-//   height: 100%;
-// }
-
 .range-input-block {
   .v-slider__thumb {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     &::before {
       width: 45px;
       height: 45px;
+      left: -10px;
+      top: -10px;
     }
   }
   padding-top: 5%;
@@ -204,6 +202,7 @@ $text-color: #979BA7;
     }
     .v-application .primary {
       background-color: $orange !important;
+      cursor: none;
     }
     .v-application .primary.lighten-3 {
       background-color: #979BA7 !important;
@@ -218,6 +217,7 @@ $text-color: #979BA7;
     }
     .v-slider--horizontal {
       min-height: 15px;
+      cursor: none;
       .v-slider__track-container {
         height: 8px;
         width: 100%;
@@ -225,6 +225,7 @@ $text-color: #979BA7;
         .v-slider__track-fill {
           height: 8px;
           border-radius: 12px;
+          cursor: none;
         }
       }
     }
@@ -333,7 +334,7 @@ $text-color: #979BA7;
 
     p {
       font-size: 16px;
-      line-height: 18px;
+      line-height: 150%;
       font-weight: 400;
       margin: 20px 0;
       color: $text-color;
@@ -486,7 +487,7 @@ $text-color: #979BA7;
       }
     }
     .circle-info {
-      margin-top: 50%;
+      margin-top: 45%;
       p {
         .example-orange {
           width: 20px;

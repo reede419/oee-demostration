@@ -14,10 +14,10 @@
             </defs>
           </svg>
           <div class="email">
-            <a href="mailto:koeebox@gmail.com">koeebox@gmail.com</a>
+            <a href="mailto:order@koeebox.com">order@koeebox.com</a>
           </div>
           <div class="phone">
-            <a href="tel:+380 99 123 45 56">+380 99 123 45 56</a>
+            <a href="tel:+380 96 28 00 147">+380 96 28 00 147</a>
           </div>
         </div>
         <div class="qr-code">
@@ -47,6 +47,7 @@ $text-color: #979BA7;
     padding-bottom: 23px;
     .koeebox {
       display: flex;
+      justify-content: center;
 
       .logo {
         margin-top: 90px;
@@ -65,7 +66,7 @@ $text-color: #979BA7;
 
         .phone {
           margin-top: 20px;
-          text-align: center;
+          text-align: left;
           a {
             text-decoration: none;
             color: $text-color;
