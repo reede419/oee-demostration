@@ -15,13 +15,11 @@
 </template>
 
 <script>
-export default {
-    
-}
+export default {};
 </script>
 
 <style lang="scss">
-$text-color: #979BA7;
+$text-color: #979ba7;
 .popular-loses-block {
   min-height: 100%;
   h2 {
@@ -36,7 +34,7 @@ $text-color: #979BA7;
     }
   }
 }
-@media(min-width: 2000px) {
+@media (min-width: 2000px) {
   .popular-loses-block {
     .popular-loses {
       p {
