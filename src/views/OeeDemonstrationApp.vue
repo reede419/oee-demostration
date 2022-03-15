@@ -605,6 +605,9 @@ h2 {
 }
 
 .input-block {
+  .block-input {
+    align-items: end;
+  }
   .disabledInput {
     .keyboard {
       display: none;
