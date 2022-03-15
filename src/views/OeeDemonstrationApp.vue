@@ -7,7 +7,7 @@
             <div class="shadow-block factory-and-input-block">
               <v-row class="factory-block">
                 <v-col cols="12">
-                  <h2>Потенціал прихованої фабрики</h2>
+                  <h2>{{ $t("hiddenFactoryPotential") }}</h2>
                   <div class="factory-potential">
                     <div class="current-factory">
                       <svg
@@ -51,7 +51,7 @@
                         />
                       </svg>
                       <div class="profit-value">
-                        <span class="profit">Прибуток</span>
+                        <span class="profit">{{ $t("profit") }}</span>
                         <p class="current-factory-value">
                           {{ currentFactoryValue.toLocaleString() }}
                           <span>&#8364;</span>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="hide-factory">
                       <div class="potential-value">
-                        <span class="potential"> Потенціал </span>
+                        <span class="potential"> {{ $t("potential") }} </span>
                         <p class="hide-factory-value">
                           {{ hiddenFactoryValue.toLocaleString() }}
                           <span>&#8364;</span>
@@ -116,8 +116,8 @@
                     ></div>
                   </div>
                   <div class="current-hide-factory">
-                    <span>Поточна фабрика</span>
-                    <span>Прихована фабрика</span>
+                    <span>{{ $t("currentFactory") }}</span>
+                    <span>{{ $t("hiddenFactory") }}</span>
                   </div>
                 </v-col>
               </v-row>
@@ -142,10 +142,9 @@
                         :suffix="input.suffix"
                         :class="input.class"
                       ></v-text-field>
-                      <!-- <numkeyboard v-model="input.currentVal" ok-text="OK" text-align="left" :class="input.class"></numkeyboard> -->
                     </v-col>
                     <v-col xl="3" lg="3" md="4">
-                      <label for="oee">OEE (розраховано нижче)</label>
+                      <label for="oee">{{ $t("oeeCalculatedBelow") }}</label>
                       <v-text-field
                         v-model="oeeResult"
                         id="oee"
@@ -169,10 +168,10 @@
     <v-row>
       <v-col cols="12">
         <v-row>
-          <v-col xl="8" lg="8" md="8">
+          <v-col xl="8" lg="8" md="8" cols="12">
             <RangeInput @oeeResult="getOeeResult" />
           </v-col>
-          <v-col xl="4" lg="4" md="4">
+          <v-col xl="4" lg="4" md="4" cols="12">
             <Koeebox />
           </v-col>
         </v-row>
@@ -185,7 +184,6 @@
 import RangeInput from "../components/RangeInput.vue";
 import PopularLoses from "../components/PopularLoses.vue";
 import Koeebox from "../components/Koeebox.vue";
-// import 'vue-numkeyboard/style.css'; 1
 
 export default {
   name: "oee-app",
@@ -194,7 +192,7 @@ export default {
     RangeInput,
     Koeebox,
   },
-  data: () => ({
+  data: (that) => ({
     value: null,
     previousValue: null,
     plannedHours: 0,
@@ -209,14 +207,15 @@ export default {
     currentFactoryWidth: 0,
     currentFactoryValue: 0,
     hiddenFactoryValue: 0,
+    maxFactoryValueNumbers: 10,
     inputs: [
       {
         id: "planned-hours",
         currentVal: "8760",
         minVal: "0",
         maxVal: "1000",
-        suffix: "год",
-        label: "Заплановані години",
+        suffix: that.$t("hoursMin"),
+        label: that.$t("plannedHours"),
         class: "",
       },
       {
@@ -224,8 +223,8 @@ export default {
         currentVal: "50",
         minVal: "0",
         maxVal: "1000",
-        suffix: "од/год",
-        label: "Макс. прод. / год.",
+        suffix: that.$t("unitsHr"),
+        label: that.$t("maxOutputHr"),
         class: "",
       },
       {
@@ -234,7 +233,7 @@ export default {
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
-        label: "Ціна / одиниця",
+        label: that.$t("unitPrice"),
         class: "",
       },
       {
@@ -243,7 +242,7 @@ export default {
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
-        label: "Пер. вартість / од.",
+        label: that.$t("primaryCostUnit"),
         class: "",
       },
       {
@@ -252,7 +251,7 @@ export default {
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
-        label: "Прямі витрати на ТО",
+        label: that.$t("directMaintenanceCosts"),
         class: "",
       },
       {
@@ -261,7 +260,7 @@ export default {
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
-        label: "Амортизація",
+        label: that.$t("depreciation"),
         class: "",
       },
       {
@@ -270,7 +269,7 @@ export default {
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
-        label: "Інші постійні витрати",
+        label: that.$t("otherFixedCosts"),
         class: "",
       },
     ],
@@ -451,18 +450,25 @@ export default {
       let margaPerYearTeoretical = margaPerItem * theoreticalProduction;
       let margaPerYearCurrency = margaPerItem * actualProduction;
 
-      this.currentFactoryValue = Math.ceil(
+      let valueCurrentFactory =
         margaPerYearCurrency -
-          +directMaintenanceCosts -
-          +amortizations -
-          +otherFixedCosts
-      );
-      this.hiddenFactoryValue = Math.ceil(
+        +directMaintenanceCosts -
+        +amortizations -
+        +otherFixedCosts;
+      this.currentFactoryValue =
+        valueCurrentFactory.toString().length >= this.maxFactoryValueNumbers
+          ? Math.ceil(valueCurrentFactory).toString().substring(0, 10)
+          : Math.ceil(valueCurrentFactory);
+
+      let valueHiddenFactory =
         margaPerYearTeoretical -
-          +directMaintenanceCosts -
-          +amortizations -
-          +otherFixedCosts
-      );
+        +directMaintenanceCosts -
+        +amortizations -
+        +otherFixedCosts;
+      this.hiddenFactoryValue =
+        valueHiddenFactory.toString().length >= this.maxFactoryValueNumbers
+          ? Math.ceil(valueHiddenFactory).toString().substring(0, 10)
+          : Math.ceil(valueHiddenFactory);
 
       let currentWidth =
         (this.currentFactoryValue * 100) / this.hiddenFactoryValue;
@@ -600,13 +606,6 @@ h2 {
 
 .input-block {
   .disabledInput {
-    // .keyboard-input {
-    //   .input-value {
-    //     &::after {
-    //       border: none;
-    //     }
-    //   }
-    // }
     .keyboard {
       display: none;
     }
@@ -768,10 +767,6 @@ h2 {
       }
     }
   }
-  // .shadow-block {
-  //   box-shadow: -6px -6px 10px #212530, 6px 6px 10px #14171d;
-  //   padding: 50px 56px;
-  //  }
 }
 @media (min-width: 1263px) and (max-width: 1500px) {
   .shadow-block {
@@ -817,6 +812,17 @@ h2 {
         }
       }
     }
+  }
+}
+@media (max-width: 600px) {
+  .factory-and-input-block {
+    padding: 5px;
+  }
+  .profit-value .profit {
+    margin-left: 0;
+  }
+  .factory-potential .current-factory .current-factory-value {
+    margin-left: 0;
   }
 }
 </style>

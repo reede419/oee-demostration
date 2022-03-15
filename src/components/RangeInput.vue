@@ -3,7 +3,14 @@
     <v-row>
       <v-col cols="12">
         <v-row class="range-input-block">
-          <v-col lg="6" xl="6" md="12" sm="12" class="horizontal-inputs">
+          <v-col
+            lg="6"
+            xl="6"
+            md="12"
+            sm="12"
+            cols="12"
+            class="horizontal-inputs"
+          >
             <v-app id="inspire">
               <div
                 class="horizontal-input"
@@ -25,7 +32,7 @@
 
           <v-col xl="6" lg="6" md="12">
             <v-row>
-              <v-col xl="6" lg="6" md="6">
+              <v-col xl="6" lg="6" md="6" cols="6">
                 <div class="flex-wrapper">
                   <span class="oeeValue">{{ Math.floor(oeeResult) }}%</span>
                   <div class="single-chart">
@@ -69,16 +76,27 @@
                   </div>
                 </div>
               </v-col>
-              <v-col cols="6">
+              <v-col md="6">
                 <div class="circle-info">
-                  <p>
-                    <span class="example" :class="circleClass"></span> OEE
-                    поточне
-                  </p>
-                  <p>
-                    <span class="example-orange"></span> Середній світовий
-                    показник ОЕЕ за даними oee.com
-                  </p>
+                  <div class="title-circle">
+                    <div class="example-circle">
+                      <span
+                        class="example circle-oee"
+                        :class="circleClass"
+                      ></span>
+                    </div>
+                    <span class="circle-text">
+                      {{ $t("currentOee") }}
+                    </span>
+                  </div>
+                  <div class="title-circle">
+                    <div class="example-circle">
+                      <span class="example-orange circle-oee"></span>
+                    </div>
+                    <span class="circle-text">
+                      {{ $t("averageGlobalOee") }}
+                    </span>
+                  </div>
                 </div>
               </v-col>
             </v-row>
@@ -91,7 +109,7 @@
 
 <script>
 export default {
-  data: () => ({
+  data: (that) => ({
     oeeResult: 60,
     avabilityValue: 0,
     perfomanceValue: 0,
@@ -107,7 +125,7 @@ export default {
         currentValue: "85",
         class: "avability",
         text: "Avability",
-        labelName: "Доступність",
+        labelName: that.$t("availability"),
       },
       {
         id: "perfomance",
@@ -116,7 +134,7 @@ export default {
         currentValue: "90",
         class: "perfomance",
         text: "Perfomance",
-        labelName: "Продуктивність ",
+        labelName: that.$t("perfomance"),
       },
       {
         id: "quallity",
@@ -125,7 +143,7 @@ export default {
         currentValue: "95",
         class: "quallity",
         text: "Quallity",
-        labelName: "Якість",
+        labelName: that.$t("quality"),
       },
     ],
   }),
@@ -203,12 +221,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $orange: #ff6d0b;
 $white: #ffffff;
 $text-color: #979ba7;
 
-.range-input-block {
+.range-input-block ::v-deep {
   .v-slider__thumb {
     width: 25px;
     height: 25px;
@@ -226,7 +244,7 @@ $text-color: #979ba7;
     }
     .v-application .primary {
       background-color: $orange !important;
-      cursor: none;
+      // cursor: none;
     }
     .v-application .primary.lighten-3 {
       background-color: #979ba7 !important;
@@ -241,7 +259,7 @@ $text-color: #979ba7;
     }
     .v-slider--horizontal {
       min-height: 15px;
-      cursor: none;
+      // cursor: none;
       .v-slider__track-container {
         height: 8px;
         width: 100%;
@@ -249,7 +267,7 @@ $text-color: #979ba7;
         .v-slider__track-fill {
           height: 8px;
           border-radius: 12px;
-          cursor: none;
+          // cursor: none;
         }
       }
     }
@@ -358,20 +376,20 @@ $text-color: #979ba7;
     margin-left: auto;
     margin-top: 10%;
 
-    p {
+    .title-circle {
       font-size: 16px;
       line-height: 150%;
       font-weight: 400;
       margin: 20px 0;
       color: $text-color;
       display: flex;
-
-      .example {
+      .example-circle {
+        width: 13px;
         display: flex;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin: auto 10px;
+        align-items: center;
+      }
+      .circle-text {
+        margin-left: 10px;
       }
       .red {
         background-color: red;
@@ -382,14 +400,15 @@ $text-color: #979ba7;
       .orange {
         background-color: rgb(255, 251, 2);
       }
+      .circle-oee {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        display: flex;
+      }
 
       .example-orange {
         background-color: $orange;
-        display: flex;
-        width: 16px;
-        height: 12px;
-        border-radius: 50%;
-        margin: auto 10px;
       }
     }
   }
@@ -399,13 +418,9 @@ $text-color: #979ba7;
   .range-input-block {
     .circle-info {
       margin-top: 45%;
-      p {
+      .title-circle {
         font-size: 28px;
         line-height: 32px;
-        .example-orange {
-          width: 25px;
-          height: 13px;
-        }
       }
     }
     .single-chart {
@@ -429,13 +444,9 @@ $text-color: #979ba7;
   .range-input-block {
     .circle-info {
       margin-top: 45%;
-      p {
+      .title-circle {
         font-size: 28px;
         line-height: 32px;
-        .example-orange {
-          width: 35px;
-          height: 13px;
-        }
       }
     }
     .single-chart,
@@ -460,9 +471,6 @@ $text-color: #979ba7;
   }
 }
 @media (min-width: 2001px) {
-  // .block-range-input {
-  //   min-height: 100%;
-  // }
   .range-input-block {
     padding-top: 3%;
     .horizontal-inputs .v-slider--horizontal .v-slider__track-container {
@@ -519,12 +527,6 @@ $text-color: #979ba7;
     }
     .circle-info {
       margin-top: 45%;
-      p {
-        .example-orange {
-          width: 20px;
-          height: 13px;
-        }
-      }
     }
   }
 }
@@ -544,12 +546,6 @@ $text-color: #979ba7;
     }
     .circle-info {
       margin-top: 50%;
-      p {
-        .example-orange {
-          width: 25px;
-          height: 13px;
-        }
-      }
     }
   }
 }
@@ -570,12 +566,6 @@ $text-color: #979ba7;
     }
     .circle-info {
       margin-top: 50%;
-      p {
-        .example-orange {
-          width: 30px;
-          height: 13px;
-        }
-      }
     }
   }
 }
@@ -599,11 +589,6 @@ $text-color: #979ba7;
     }
     .circle-info {
       margin-top: 50%;
-      p {
-        .example-orange {
-          width: 35px;
-        }
-      }
     }
   }
 }
@@ -621,6 +606,31 @@ $text-color: #979ba7;
         top: -30px;
       }
     }
+  }
+}
+@media (max-width: 600px) {
+  .range-input-block .single-chart {
+    top: 5px;
+  }
+  .range-input-block {
+    padding-bottom: 8%;
+  }
+  .range-input-block .circle-info .title-circle {
+    display: flex;
+    align-items: center;
+  }
+  .range-input-block .flex-wrapper .oeeValue {
+    font-size: 20px;
+  }
+  .range-input-block .single-chart,
+  .range-input-block .single-chart2 {
+    width: 80%;
+  }
+}
+@media (max-width: 450px) {
+  .range-input-block .single-chart,
+  .range-input-block .single-chart2 {
+    width: 90%;
   }
 }
 </style>

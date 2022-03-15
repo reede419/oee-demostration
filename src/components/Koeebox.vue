@@ -1,6 +1,6 @@
 <template>
   <div class="koeebox-block shadow-block">
-    <h2>Smart фабрика за 15 хвилин</h2>
+    <h2>{{ $t("smartFactoryInMinutes") }}</h2>
     <div class="koeebox-qr">
       <div class="koeebox">
         <div class="logo">
@@ -54,10 +54,9 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $text-color: #979ba7;
-.koeebox-block {
-  // height: 100%;
+.koeebox-block ::v-deep {
   h2 {
     margin-top: 25px;
   }
@@ -107,7 +106,6 @@ $text-color: #979ba7;
 }
 @media (min-width: 2000px) {
   .koeebox-block {
-    // min-height: 100%;
     display: grid;
     .koeebox-qr {
       .koeebox {
@@ -240,6 +238,17 @@ $text-color: #979ba7;
   .koeebox-block {
     .koeebox-qr {
       margin-bottom: 8%;
+    }
+  }
+}
+@media (max-width: 960px) {
+  .koeebox-block .koeebox-qr .koeebox .logo {
+    margin-top: 20px;
+    .email {
+      margin-top: 20px;
+    }
+    .phone {
+      text-align: center;
     }
   }
 }
