@@ -211,7 +211,7 @@ export default {
     inputs: [
       {
         id: "planned-hours",
-        currentVal: "8760",
+        currentVal: "2688",
         minVal: "0",
         maxVal: "1000",
         suffix: that.$t("hoursMin"),
@@ -220,7 +220,7 @@ export default {
       },
       {
         id: "max-productivity",
-        currentVal: "50",
+        currentVal: "2",
         minVal: "0",
         maxVal: "1000",
         suffix: that.$t("unitsHr"),
@@ -229,7 +229,7 @@ export default {
       },
       {
         id: "price-per-item",
-        currentVal: "0.6",
+        currentVal: "235",
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
@@ -238,7 +238,7 @@ export default {
       },
       {
         id: "cost",
-        currentVal: "0.35",
+        currentVal: "210",
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
@@ -256,7 +256,7 @@ export default {
       },
       {
         id: "amortizations",
-        currentVal: "15000",
+        currentVal: "300",
         minVal: "0",
         maxVal: "1000",
         suffix: "€",
@@ -265,7 +265,7 @@ export default {
       },
       {
         id: "other-fixed-costs",
-        currentVal: "30000",
+        currentVal: "1200",
         minVal: "0",
         maxVal: "1000",
         suffix: "€",

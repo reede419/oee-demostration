@@ -131,7 +131,7 @@ export default {
         id: "perfomance",
         minValue: "0",
         maxValue: "100",
-        currentValue: "90",
+        currentValue: "70",
         class: "perfomance",
         text: "Perfomance",
         labelName: that.$t("perfomance"),
