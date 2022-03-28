@@ -37,12 +37,12 @@
             <a href="mailto:order@koeebox.com">order@koeebox.com</a>
           </div>
           <div class="phone">
-            <a href="tel:+380 96 28 00 147">+380 96 28 00 147</a>
+            <a href="tel:+38 096 813 5257">+38 096 813 5257</a>
           </div>
         </div>
         <div class="qr-code">
           <div class="qr-image">
-            <img src="../assets/img/QR.png" alt="" />
+            <img src="../assets/img/QR2.png" alt="" />
           </div>
         </div>
       </div>
